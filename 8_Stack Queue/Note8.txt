@@ -1,0 +1,36 @@
+1. queue適合用list(需刪除front, vector不支援pop_front()且速度慢)
+stack基本上list和vector均可用.
+
+2. vector(陣列原理)和deque適用時機:
+a. 經常隨機存取: (vector>=deque)
+b. 元素複製成本低或不常插入刪除元素: (deque>=vector) 
+(善用reserve()可大幅加速vector, deque則無)
+
+3. list適用時機(雙向鏈結原理):
+a. 不常隨機與少量循序存取
+b. 元素複製成本高或經常插入刪除元素
+
+4. C++支援stack和queue(p.15):
+a. stack可選用deque(預設), vector和list作為容器.
+b. queue可選用deque(預設), list作為容器.
+i.e, queue<int> a; //使用deque<int> 實作queue a
+i.e, queue<int, list<int> > b; //使用list<int> 實作queue b
+
+5. 使用#include <sstream>轉換型態(見cal.cpp),
+stringstream ss;
+stream input = "50";
+int output; 
+ss << input; 
+ss >> output; 
+也可使用下列寫法:
+string input = "50";
+stringstream ss(input); //初始化時直接寫入
+int output;
+ss >> output;
+另外也有下列寫法:
+stream input = "50";
+int output;
+stringstream(input) >> output; //建立暫時物件直接轉換
+//上面此行也可寫成stringstream("50")>> output;
+
+6. ex8E.cpp練習題中q儲存答案, s儲存的是運算子(p.19).

@@ -1,0 +1,31 @@
+1. 使用typedef可定義型態, 主要用途是為一個複雜型態取簡單的別名:
+typedef int a; //a為型態名稱, 可用來宣告變數(等同用int宣告)
+typedef int Grade[20]; //之後宣告Grade b; 意義等同int b[20];
+
+2. 單向鏈結中head_紀錄第1個Node節點, 第1個Node節點則指向第2個直到NULL.
+注意head_本身沒有資料, 並可由class存取, size_表示有資料之節點, 
+並未計入head_節點(第0節點).
+
+3. 熟記linked list的製作流程.
+4.(???) 注意list_2.cpp中At賦值方法定義:
+ElemType &ForwardList<ElemType>::At(int i) {
+	return const_cast<ElemType&>(const_cast<const ForwardList *>(this)->At(i));
+}
+目前理解為const_cast<const ForwardList *>(this)是將自身物件轉換為const,
+接著呼叫At(i)才能準確呼叫const成員函數At.
+(因為At存在const和非const版本, 若兩種成員函式均存在時, 
+non-const物件會呼叫non-const成員函式造成遞迴而編譯錯誤, 見lecture2, p.36)
+const_cast<const ForwardList *>(this)->At(i)將會回傳一個常數ElemType變數,
+但若為常數則無法賦值, 故再用const_cast<ElemType&>(...)將其轉還為非常數型態,
+並加入&使其可以被賦值.
+
+5.(???) ex6D.cpp中Clear()做不出來, 應該是struct沒有刪除乾淨.
+6. 賦值運算子可用複製與交換法(copy-and-swap)實現:
+T &operator=(const T &rhs){
+	T tmp(rhs); //複製建構式
+	Swap(tmp); //交換式
+	return *this;
+}
+
+7.(???) ex6E.cpp不能理解為何next->link=NULL的情況下,
+next = next->link; 但while(nex!=NULL){}的迴圈依然能繼續進行. 

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1490362542 source:c:\users\weizen\documents\github\data_structure_with_cplusplus\test\main.cpp
+	<iostream>
+	<cstdlib>
+	<list>
+	<vector>
+

@@ -1,0 +1,62 @@
+1. 動態配置時可呼叫不同參數的建構式(p.4).
+2. delete [] 若少寫[]只可刪除陣列中位置[0]的動態配置.
+3. 單一參數之建構式儘量避免隱性轉型, 最好加上explicit(p.10).
+4. p.11中有兩個At, int &At(int)於賦值的情況下使用, i.e, a.At(3) = 7
+int At(int i) const於不賦值的情況下使用, 表示不能改變類別中的成員.
+注意: 如果使用&At, 另一個At 必須加上const才能區別, 
+不然會造成overload錯誤. 加上const另一理由為const物件才可使用.
+(const物件不可使用non-const成員函數)
+const物件時機: 一般&d=a (a,d均為物件)時會加上const避免修改d(p.9)
+同時可以避免d使用一些修改物件變數之成員函數(只能使用const成員函數)
+
+5.(???) p.12注意多載[]的用法. return同為At(i), 但operator有&或const區別.
+6. 物件複製:(p.17)
+Grade a(30);
+Grade b = a; //複製建構式, 會隱性轉換成Grade b(a).
+b = a; //賦值運算, 呼叫b.operator=(a) 或 operator=(a,b).
+
+7. 複製建構式型式(i.e, class Grade): Grade(const Grade&)
+兩點注意: 1)複製建構式的參數必為同型物件的參考 2)通常為固定值參考
+
+8. 賦值運算子= 一般使用b.operator=(a), 另賦值運算子支援串接(p.19).
+9. 自我賦值(p.21): 檢查自我賦值避免資料被清除的問題
+i.e, if(this != &rhs){ 清除資料後複製資料 }
+
+10. 若無複製建構式(或多載賦值運算子), 
+將會自動建立預設複製建構式(或賦值運算子)並複製所有資料成員.
+
+11. 大三法則(p.20): 解構式, 複製建構式, 賦值運算子(若定義1個最好3個都定義):
+尤其當資料成員中有指標型態時:
+解構式若未delete可能造成記憶體洩漏(memory leak)
+複製建構式會複製位址, 故發生淺複製(shallow copy).
+賦值運算子可能造成指標改變但原來的位址記憶體尚未釋放.
+
+12. 設計細節重點:
+a. 大三法則(複製建構式, 解構式, 多載賦值運算子)
+b. 單一參數建構式禁止隱性轉型(explicit)
+c. 部分成員函數加上const讓固定值物件使用
+(未加const之成員函數固定值物件不能使用)
+d. 部分成員函數可回傳參考使可作為左值(可賦值, 至於等號左邊)
+
+13.(???) p.26中Resize的方法裡(參考vector_1.cpp)有如下代碼:
+void IntVector::Resize(int n) {
+ 	int *new_data = new int[n];
+	for (int i = 0; i < size_ && i < n; ++i) {
+		new_data[i] = data_[i];
+	}
+	delete [] data_;
+
+	data_ = new_data;
+	size_ = n;
+	delete [] new_data; //編譯錯誤
+} 
+為何不用釋放new_data?(且加入delete [] new_data在最後會造成錯誤)
+目前理解為因其使用了data_ = new_data的語法故不能再用delete [],
+經測試若改用迴圈賦值:
+	...
+	delete [] data_;
+	for (int i = 0; i <  n; ++i) {
+		data_[i] = new_data[i];
+	}
+	size_ = n;
+	delete [] new_data; //不會造成錯誤

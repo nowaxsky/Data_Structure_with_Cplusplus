@@ -1,0 +1,11 @@
+1. 注意insertion_sort.cpp中value_type即為container的模板參數.
+2. size_t等同unsigned int.
+3. 具備隨機存取迭代器的容器可使用sort.
+4. 在可使用sort的容器中可放入自訂類別(如vector<Grade> a(10)),
+並使用三種方法其中一種後可使用sort(p.7):
+a. 多載operator<, 使用sort(a.begin(), a.end()).
+b. 提供比較函式Comp1, 使用sort(a.begin(), a.end(), Comp1)
+c. 提供比較類別Comp2, 使用sort(a.begin(), a.end(), Comp2())
+
+5. 一般在沒有任何私有成員時使用struct(p.8).
+6.(???) inline的意思應該是不用創造物件可直接使用.

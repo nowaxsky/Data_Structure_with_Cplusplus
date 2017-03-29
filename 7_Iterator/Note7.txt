@@ -1,0 +1,35 @@
+1. 模板參數也能使用容器(也是一種class), 只要確保模板中所用到的方法,
+在可能放入的容器中擁有即可(p.6).
+注意p.6的語法Max<int, Vector<int> >(a)這裡a為參數, 另>>中間必須空格.
+不然使用Max<int>(a)也可通過編譯(省略一個模板參數).
+
+2. 模板參數相依型態(p.10):
+i.e, ContainerType::ValueType, 若型態包含了模板參數(如ContainerType),
+則使用上必須加上typename修飾才會被當作是型態.
+不包含時則可直接使用, 如ForwardList<int>::ValueType(p.8)
+
+3. 注意const和指標共同使用的放置意義(p.13,以下括號為方便觀察, 實際上不加):
+a. const (int) *begin; //const修飾int型態的變數*begin為常數(指標內容不可變)
+b. (int) const *begin; //同a
+c. (int*) const begin; //const修飾int*型態的變數begin為常數(指標方向不能變)
+d. const int* const begin; //指標方向和內容均不可變
+
+4. 迭代器類別模板(p.16):
+a. 解決class不能存取private成員的問題.
+b. 使用模板讓不同class可使用統一的方法如begin(), end().
+c. 為迭代器多載各種方法(p.17): ++, *, ->, ==, !=等.
+
+5.(???) 在賦予模板參數(型態)前加上const目前不理解其用意(p.18)
+6. 迭代器是回傳位址, 故要使用指標才能列印值(p.16).
+7. 內建迭代器種類:
+a. 單向迭代器: 支援++. 容器i.e, forward_list(C++ 11才有)
+b. 雙向迭代器: 支援++, --. 容器i.e, list
+c. 隨機存取迭代器: 支援++, --, +, -(p.28). 容器i.e, vector
+
+8. 有雙向和隨機存取功能的容器提供下列四種迭代器(p.24):
+a. 一般迭代器: iterator, const_iterator
+b. 反向迭代器: reverse_iterator, const_reverse_iterator
+另容器提供四種操作: begin(), end(), rbegin(), rend()
+
+9. 當容器為const時, 只能使用固定值迭代器(p.27)
+10. advance(p, 5);可移動迭代器的位置(p.28)(見Note10中1)

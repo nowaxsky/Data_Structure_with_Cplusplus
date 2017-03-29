@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1489844095 source:c:\users\weizen\documents\github\data_structure_with_cplusplus\c++ object\big num\main.cpp
+	<iostream>
+	<string.h>
+

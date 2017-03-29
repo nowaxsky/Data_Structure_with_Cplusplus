@@ -1,0 +1,8 @@
+1. #include <queue>可使用priority_queue<T> q(a.begin(), a.end()),
+快速產生由大至小的queue, 並可使用pop(), top()等方法(見priority_queue.cpp).
+
+2. #include <algorithm>可使用make_heap(), push_heap(), pop_heap() 和 sort_heap().
+3. #include <set>來使用set.
+4. #include <map>來使用map, 可使用[]來賦值或查詢. i.e,
+map<string, int>q;
+q["Chang"] = 1;

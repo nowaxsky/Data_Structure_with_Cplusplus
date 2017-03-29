@@ -1,0 +1,6 @@
+1. 除了container adaptor(i.e, stack, queue, priority_queue)之外,
+所有容器均支援迭代器(i.e, vector, deque, list, set, map等).
+
+2. 使用map<elem, set<elem> >來描述圖, set紀錄elem連結哪些點(見graph.cpp).
+3. DFS會先探訪最深層的狀況, 使用stack實現(FILO).
+4. BFS會先探訪該層所有的狀況再尋找下一層, 使用queue實現(FIFO).
