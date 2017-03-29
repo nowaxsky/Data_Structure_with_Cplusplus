@@ -33,6 +33,8 @@ class ForwardList {
   // 新增交換函式:
   void Swap(ForwardList<ElemType> &x);
 
+  void PushBack(const ElemType &elem);
+
   ElemType &operator[](int i)             { return At(i); }
   const ElemType &operator[](int i) const { return At(i); }
   // 新增賦值運算子多載
@@ -132,19 +134,40 @@ void ForwardList<ElemType>::Clear() {
 
 template<class ElemType>
 void ForwardList<ElemType>::Swap(ForwardList<ElemType> &x) {
-    ForwardList<ElemType> temp(x);
 
-    x.Clear();
-    for(int i=(this->Size())-1; i>=0;i--){
-        x.PushFront(this->At(i));
+    int this_size = this->Size();
+    int x_size = x.Size();
+
+    for(int i=0; i<x_size; i++){
+        this->PushBack(x[i]);
+    }
+    for(int i=0; i<this_size; i++){
+        x.PushBack(this->At(i));
+    }
+    for(int i=0; i<this_size;i++){
+        this->PopFront();
+    }
+    for(int i=0; i<x_size; i++){
+        x.PopFront();
     }
 
-    this->Clear();
-    for(int i=temp.Size()-1; i>=0;i--){
-        this->PushFront(temp[i]);
-    }
-    temp.Clear();
 }
+
+template<class ElemType>
+void ForwardList<ElemType>::PushBack(const ElemType &elem) {
+    // Step 1]
+    Node *p = head_;
+    for (int i = 0; i < size_ - 1; ++i) { p = p->link; }
+    // Step 2]
+    Node *ins = new Node();
+    ins->data = elem;
+    // Step 3]
+    ins->link = p->link;
+    // Step 4]
+    p->link = ins;
+    ++size_;
+}
+
 
 template<class ElemType>
 ForwardList<ElemType> &ForwardList<ElemType>::operator=(
@@ -189,6 +212,7 @@ int main() {
   for (int i = 0; i <3; ++i) { b.PushFront(i+8); }
   cout << "a: " << a << endl
        << "b: " << b << endl;
+
 
   b = a;
   cout << "b = a; " << endl
