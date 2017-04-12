@@ -4,26 +4,26 @@
 template<typename ElemType, int kNumOfElems>
 class Array {
  public:
-  int Size() const                { return kNumOfElems; } 
-  ElemType &At(int i)             { return data_[i]; }
-  const ElemType &At(int i) const { return data_[i]; } 
+  int Size() const                { return kNumOfElems; }
+  ElemType &At(int i)             { return data_[i];}
+  const ElemType &At(int i) const { return data_[i];}
 
-  ElemType &operator[](int i)             { return At(i); }  
-  const ElemType &operator[](int i) const { return At(i); }  
+  ElemType &operator[](int i)             { return At(i); }
+  const ElemType &operator[](int i) const { return At(i); }
 
  private:
   ElemType data_[kNumOfElems];
 };
 
 template<typename ElemType, int kNumOfElems>
-std::ostream &operator<<(std::ostream &lhs, 
+std::ostream &operator<<(std::ostream &lhs,
                          const Array<ElemType, kNumOfElems> &rhs) {
   for (int i = 0; i < rhs.Size(); ++i) {
     if (i > 0) lhs << " ";
     lhs << rhs[i];
   }
   return lhs;
-} 
+}
 
 
 int main() {
@@ -35,10 +35,11 @@ int main() {
 
   for (int i = 0; i < a.Size(); ++i) a[i] = 1.1 * i;
   cout << "a: " << a << endl;
+  cout<<a[1]<<endl;
 
   for (int i = 0; i < b.Size(); ++i) b[i] = 1.1 * i;
   cout << "b: " << b << endl;
 
   system("pause");
-  return 0; 
+  return 0;
 }

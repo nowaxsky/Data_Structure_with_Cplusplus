@@ -24,7 +24,8 @@ p.31中若int &Addone寫成int Addone會造成main中Addone(a) = 0錯誤,
 9. 類別中const成員函式: (注意const放置位置)
 可使用const修飾成員函式, 表示呼叫該成員函式時不會修改到物件內容(p.36).
 故const物件只能呼叫const成員函式, 不能呼叫non-const成員函式.(見Note4中4)
-non-const則均可呼叫.
+non-const物件則均可呼叫, 但存在同名const成員函式和non-const成員函式時,
+non-const物件會呼叫non-const成員函式. (見note4中4)
 
 10. 建構式: (i.e, Grade 類別)
 a. Grade a; 會呼叫無參數之建構式, 若類別中無此建構式,
@@ -39,7 +40,7 @@ e. 呼叫有參數的建構式, Grade d(10); //呼叫Grade(int n).
 f. 可產生帶有參數的暫時物件, Grade(10); 
 g. 產生物件陣列時只能呼叫無參數建構式(p.48).
 h. 隱性轉型: Grade e=10; //呼叫Grade(int n)建構式.
-注意: 沒特殊理由的話, 單一參數之建構式盡量避免隱性轉型(見Note4)
+注意: 沒特殊理由的話, 單一參數之建構式盡量避免隱性轉型(見Note4中3)
 
 i. 隱性轉型可以用在引數, 回傳(p.49), 注意下面狀況:
 Grade a;

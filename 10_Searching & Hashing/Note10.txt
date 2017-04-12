@@ -2,8 +2,8 @@
 2. distance: 計算兩個迭代器的距離(p.4)
 3. 在find.cpp中, 當找不到時會回傳迭代器end(). 注意find函數寫法.
 4. #include<algorithm>可使用find函式.
-5. 注意pair的用法, 可使用兩個型態, 分別以first, seconde代表(見hash.cpp).
+5. 注意pair的用法, 可使用兩個型態, 分別以first, second代表(見hash.cpp).
 6. #include<algorithm> 可在一般容器中使用lower_bound, upper_bound和binary search.
 i.e, lower_bound(a.begin(), a.end(), 20), 
-//可計算出在有序排列中最快可插入20的位址, 可減去a,begin()轉換為位置.
+//可計算出在有序排列中最快可插入20的位址, 可減去a.begin()轉換為位置.
 7. 更多用法參考p.24.

@@ -18,7 +18,7 @@ i.e, queue<int, list<int> > b; //使用list<int> 實作queue b
 
 5. 使用#include <sstream>轉換型態(見cal.cpp),
 stringstream ss;
-stream input = "50";
+string input = "50";
 int output; 
 ss << input; 
 ss >> output; 
@@ -28,7 +28,7 @@ stringstream ss(input); //初始化時直接寫入
 int output;
 ss >> output;
 另外也有下列寫法:
-stream input = "50";
+string input = "50";
 int output;
 stringstream(input) >> output; //建立暫時物件直接轉換
 //上面此行也可寫成stringstream("50")>> output;

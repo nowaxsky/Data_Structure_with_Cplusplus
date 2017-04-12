@@ -1,0 +1,9 @@
+<algorithm>
+find
+lower_bound
+upper_bound
+binary search
+
+<functional>
+hash
+pair

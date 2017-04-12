@@ -12,7 +12,7 @@ const typename ContainerType::ValueType Max(const ContainerType &c) {
       max = e;
     }
   }
-  return max; 
+  return max;
 }
 
 template<class ElemType>
@@ -39,21 +39,21 @@ int main() {
   using std::endl;
 
   Array<int, 10> a;
-  ForwardList<int> b(10); 
+  ForwardList<int> b(10);
 
   for (int i = 0; i < 10; ++i) {
     const int r = rand();
-    a[i] = b[i] = r;    
+    a[i] = b[i] = r;
   }
 
   cout << "a: " << a << endl
        << "b: " << b << endl;
 
-  cout << "Max<Array<int, 10> >(a):   " << Max<Array<int, 10> >(a) << endl; 
+  cout << "Max<Array<int, 10> >(a):   " << Max<Array<int, 10> >(a) << endl;
   cout << "Max<ForwardList<int> >(b): " << Max<ForwardList<int> >(b) << endl;
 
-  cout << "Max(a): " << Max(a) << endl;    
-  cout << "Max(b): " << Max(b) << endl; 
+  cout << "Max(a): " << Max(a) << endl;
+  cout << "Max(b): " << Max(b) << endl;
 
   return 0;
-} 
+}
