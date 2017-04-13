@@ -1,4 +1,7 @@
 <algorithm>
+sort(9-7)
+無法隨機存取的容器，要看容器本身是否提供sort成員函式
+stable_sort
 find
 lower_bound
 upper_bound
@@ -7,3 +10,7 @@ binary search
 <functional>
 hash
 pair
+
+<iterator>
+advance
+distance

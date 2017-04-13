@@ -25,7 +25,7 @@ class Graph {
   bool IsAdjacent(const ElemType &i, const ElemType &j) const {
     typename AdjMap::const_iterator p = adj_.find(i);
     if (p == adj_.end()) return false;
-    return p->second.find(j) != p->second.end();
+    return *p.find(j) != p->second.end();
   }
 
   const NeighborList &Neighbors(const ElemType &i) const {
