@@ -125,19 +125,22 @@ void ForwardList<ElemType>::Reverse() {
         Node *pre = NULL;
         Node *cur = head_;
         Node *nex = cur->link;
+        int z=0;
         while(nex!=NULL){
-            //std::cout<<cur->data;
+            //I'd rather using nex->data than nex.
+            //std::cout<<nex<<std::endl;
+            //std::cout<<nex->data<<std::endl;
             cur->link = pre;
             pre = cur;
             cur = nex;
             nex = nex->link;
             //std::cout<<nex->data;
-            ;
+            z++;
         }
         cur->link = pre;
 
-
-        head_ = pre; //???
+        std::cout<<z;
+        head_ = cur; //???
     }
 }
 

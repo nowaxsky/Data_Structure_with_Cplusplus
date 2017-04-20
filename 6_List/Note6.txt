@@ -29,3 +29,4 @@ T &operator=(const T &rhs){
 
 7.(???) ex6E.cpp不能理解為何next->link=NULL的情況下,
 next = next->link; 但while(nex!=NULL){}的迴圈依然能繼續進行. 
+使用while(nex->data!=NULL)可以解決問題.
